@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <% const name = 'lester' %>
+    <%- include('./partials/nav.ejs') %>
+    <h1>I love nodejs !</h1>
+    <h1>Hello <%= name%></h1>
+  <hr/>
+    <div>
+      <h2>All Blogs</h4>
+      <% if (blogs.length > 0) {%>
+        <% blogs.forEach(blog => { %>
+          <h3><%= blog.title%></h3>
+          <p><%= blog.snippet%></p>
+        <% })%>
+      <% }%>
+    </div>
+  </body>
+</html>
