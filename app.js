@@ -1,9 +1,26 @@
 const express = require("express");
 const morgan = require("morgan");
+const mongoose = require("mongoose");
+const { result } = require("lodash");
 
 // express app.
 const app = express();
 
+// connect to mongoDB
+const dbURI =
+  "mongodb+srv://finance-app:3u16kMsJoSGGvuhs@cluster0.zxtf6.mongodb.net/finance-app?retryWrites=true&w=majority";
+mongoose
+  .connect(dbURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then((result) => console.log("connected to db"))
+  .catch((err) => console.log(err));
+
+const Cat = mongoose.model("Cat", { name: String });
+
+const kitty = new Cat({ name: "Zildjian" });
+kitty.save().then(() => console.log("meow"));
 // register view engine.
 // app.set() let us configure the app settings.
 app.set("view engine", "ejs"); // ejs look for the view dir by default.
