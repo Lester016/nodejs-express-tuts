@@ -1,3 +1,4 @@
+// This file is nodejs app only without any frameworks.
 const http = require("http");
 const fs = require("fs");
 const _ = require("lodash");
@@ -30,7 +31,7 @@ const server = http.createServer((req, res) => {
 
     case "/about-sme":
       res.statusCode = 301;
-      res.setHeader("Location", "/about");
+      res.setHeader("Location", "/about"); // redirect by changing the route location.
       res.end();
       break;
 

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <% const name = 'lester' %> <%- include('./partials/nav.ejs') %>
+    <h1>I love nodejs !</h1>
+    <h1>Hello <%= name%></h1>
+
+    <hr/>
+
+    <div>
+      <h2>All Blogs</h4>
+        <a href="/blogs/<%= blog.id %>">
+          <h3><%= blog.title %></h3>
+          <p><%= blog.snippet %></p>
+        </a>
+
+        <a class="delete" data-doc="<%= blog._id %>" style="color: red">Delete</a>
+    </div>
+
+    <!-- Delete handler -->
+    <!-- AJAX Request -->
+    <script>
+      const trashcan = document.querySelector('a.delete')
+      trashcan.addEventListener('click', e => {
+        const endpoint = `/blogs/${trashcan.dataset.doc}`;
+
+        // mention that it's a delete request
+        fetch(endpoint, {
+          method: 'DELETE'
+        })
+        .then((response) => response.json())
+        .then(data => window.location.href = data.redirect)
+        .catch(() => {});
+      })
+    </script>
+
+  </body>
+</html>
+

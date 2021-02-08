@@ -1,3 +1,4 @@
+// mongoose is ODM for schema based solution model.
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
